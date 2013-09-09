@@ -159,7 +159,7 @@ DEPENDENCIES
   awesome_print
   bson_ext (~> 1.6)
   coffee-rails (~> 3.2.1)
-  devise (= 2.1.2)
+  devise (>= 2.1.2)
   jquery-rails
   mongoid (~> 2.4)
   mongoid_rails_migrations (= 0.0.14)

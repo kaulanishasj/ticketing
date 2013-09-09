@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.11'
 gem 'simple_form'
 gem 'rake'
-gem "devise", "2.1.2"
+gem "devise", ">= 2.1.2"
 gem "mongoid", "~> 2.4"
 gem "mongoid_rails_migrations", "0.0.14"
 gem "bson_ext", "~> 1.6"
