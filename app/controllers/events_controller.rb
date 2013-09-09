@@ -1,17 +1,9 @@
 class EventsController < ApplicationController
-  # GET /events
-  # GET /events.json
+  
   def index
-    @events = Event.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @events }
-    end
+    @events = Event.all.sort_by(&:created_at)
   end
 
-  # GET /events/1
-  # GET /events/1.json
   def show
     @event = Event.find(params[:id])
 
