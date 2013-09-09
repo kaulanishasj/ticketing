@@ -7,6 +7,7 @@ gem "devise", "2.1.2"
 gem "mongoid", "~> 2.4"
 gem "mongoid_rails_migrations", "0.0.14"
 gem "bson_ext", "~> 1.6"
+gem 'nested_form', :git => 'git://github.com/ryanb/nested_form.git'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
