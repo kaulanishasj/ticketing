@@ -7,8 +7,8 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
-  field :email,              :type => String, :default => ""
-  field :encrypted_password, :type => String, :default => ""
+  field :email, :type => String
+  field :encrypted_password, :type => String
 
   validates_presence_of :email
   validates_presence_of :encrypted_password
@@ -31,17 +31,6 @@ class User
   validates_presence_of :name
   validates_uniqueness_of :name, :email, :case_sensitive => false
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
-  ## Confirmable
-  # field :confirmation_token,   :type => String
-  # field :confirmed_at,         :type => Time
-  # field :confirmation_sent_at, :type => Time
-  # field :unconfirmed_email,    :type => String # Only if using reconfirmable
-
-  ## Lockable
-  # field :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts
-  # field :unlock_token,    :type => String # Only if unlock strategy is :email or :both
-  # field :locked_at,       :type => Time
-
-  ## Token authenticatable
-  # field :authentication_token, :type => String
+  
+  has_one :gender
 end
