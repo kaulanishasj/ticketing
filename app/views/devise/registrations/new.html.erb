@@ -8,12 +8,12 @@
     <%= f.input :email, :required => true, :autofocus => true %>
     <%= f.input :password, :required => true %>
     <%= f.input :password_confirmation, :required => true %>
-    <%= f.input :gender, :collection => Gender.all.map(&:type), :prompt => "Choose a gender" %>
+    <%= f.input :gender_id, :label => "Gender" , :prompt => 'Choose a Gender' do %>
+              <%= f.select :gender_id, gender_options %>
+    <% end %>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit, "Sign up" %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>

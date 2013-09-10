@@ -1,6 +1,6 @@
 # Create Genders
 ["Male", "Female"].each do |e|
   gender = Gender.new
-  gender.type = e
-  gender.save(validate: false)
+  gender.male_or_female = e
+  gender.save
 end

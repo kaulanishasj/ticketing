@@ -19,6 +19,11 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(params[:event])
+     if @event.save
+       redirect_to @event, notice: 'Event was successfully created.'
+     else
+       render action: "new"
+     end
   end
 
   def update
@@ -28,5 +33,21 @@ class EventsController < ApplicationController
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
+  end
+
+  def attend
+    user = User.find(params[:user_id])
+    event = Event.find(params[:event_id])
+    event.add_event_to_attending(user)
+    flash[:notice] = 'successfully attening event' 
+    redirect_to events_path
+  end
+
+  def unattend
+    user = User.find(params[:user_id])
+    event = Event.find(params[:event_id])
+    event.remove_event_to_from_user(user)
+    flash[:notice] = 'successfully unattening event' 
+    redirect_to events_path
   end
 end

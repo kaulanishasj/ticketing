@@ -1,6 +1,6 @@
 class Gender
   include Mongoid::Document
 
-  field :type
+  field :male_or_female
   belongs_to :user
  end
