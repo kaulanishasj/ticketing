@@ -6,7 +6,7 @@ class User
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  field :gender, :type => String 
+  field :gender 
  
   ## Database authenticatable
   field :email, :type => String
@@ -32,7 +32,7 @@ class User
   field :name
   validates_presence_of :name
   validates_uniqueness_of :name, :email, :case_sensitive => false
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :gender
   
   
   has_and_belongs_to_many :events, class_name: 'Event'
