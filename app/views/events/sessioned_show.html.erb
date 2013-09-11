@@ -7,8 +7,7 @@
 <% end %>
 
 <% @event.users.each do |user| %>
-	<p><%= user.email %></p>
-	<p><%= user.gender.male_or_female %></p>
+	<p><%= user.email %></p><p><%= user.gender %></p>
 <% end %>
 
 <%= link_to 'Back', events_path %>

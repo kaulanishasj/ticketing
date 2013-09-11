@@ -8,7 +8,7 @@ class Event
   has_and_belongs_to_many :users, inverse_of: :events
 
   def user_attending_event(user)
-  	self.users.where(id: user.id).first.present? ? true : false
+  	self.users.where(_id: user.id).first.present? ? true : false
   end
 
   def add_event_to_attending(user)
@@ -17,7 +17,7 @@ class Event
   end
 
   def remove_event_to_from_user(user)
-  	user.events.find(self).remove
+  	user.events.delete(self)
   	user.save
   end
 end
