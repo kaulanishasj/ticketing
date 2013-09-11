@@ -1,7 +1,10 @@
 module ApplicationHelper
 
-  def gender_options
-    Gender.all.map { |gender| [gender.male_or_female, gender.id.to_s] }
+  def gender_html_options
+    options = "<option value> Would not like to mention </option>"
+		['Male', 'Female'].each do |gender|
+			options << "<option value=\"#{gender}\">#{gender}</option>" 
+		end
+    options.html_safe
   end
-
 end

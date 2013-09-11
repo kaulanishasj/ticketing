@@ -4,7 +4,11 @@
 <% @events.each do |event| %>
   <tr>
     <td><%= event.name %></td>
-    <td><%= link_to 'Show', event %></td>
+    <% if current_user.present? %>
+    	<td><%= link_to 'Show', event_sessioned_show_path(event) %></td>
+    <% else %>
+    	<td><%= link_to 'Show', event %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

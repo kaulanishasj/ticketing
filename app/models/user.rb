@@ -6,6 +6,8 @@ class User
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  field :gender, :type => String 
+ 
   ## Database authenticatable
   field :email, :type => String
   field :encrypted_password, :type => String
@@ -32,12 +34,11 @@ class User
   validates_uniqueness_of :name, :email, :case_sensitive => false
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
   
-  has_one :gender
-
+  
   has_and_belongs_to_many :events, class_name: 'Event'
 
   def add_event_to_attending(event)
     self.events << event
     self.save(validate: false)
-  encrypted_password
+  end
 end

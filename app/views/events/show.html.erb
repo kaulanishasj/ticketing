@@ -1,11 +1,8 @@
 <%= @event.name%>'s Show page
-<%if @event.user_attending_event(current_user) %>
-	<p><%= link_to 'UnAttend',  user_event_unattend_path(current_user, @event), method: "post"%></p>
-<% else %>
-	<p><%= link_to 'Attend',  user_event_attend_path(current_user, @event), method: "post" %></p>
-<% end %>
+
 <% @event.users.each do |user| %>
 	<p><%= user.email %></p>
 	<p><%= user.gender.male_or_female %></p>
 <% end %>
+<br/>
 <%= link_to 'Back', events_path %>

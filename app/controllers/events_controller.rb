@@ -9,6 +9,11 @@ class EventsController < ApplicationController
     @users_attending = @event.users
   end
 
+  def sessioned_show
+    @event = Event.find(params[:event_id])
+    @users_attending = @event.users
+  end
+
   def new
     @event = Event.new
   end
@@ -20,7 +25,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
      if @event.save
-       redirect_to @event, notice: 'Event was successfully created.'
+       redirect_to redirect_link_after_create, notice: 'Event was successfully created.'
      else
        render action: "new"
      end
@@ -50,4 +55,15 @@ class EventsController < ApplicationController
     flash[:notice] = 'successfully unattening event' 
     redirect_to events_path
   end
+
+  private
+
+  def redirect_link_after_create
+    if current_user.present?
+      event_sessioned_show_path(@event)
+    else
+      event_path(@event)
+    end
+  end
+
 end
