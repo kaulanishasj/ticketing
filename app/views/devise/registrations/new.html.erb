@@ -9,7 +9,7 @@
     <%= f.input :password, :required => true %>
     <%= f.input :password_confirmation, :required => true %>
     <%= f.input :gender , :required => true, label: "Gender", prompt: true, input_html: { class: 'options' } do %>  
-      <%= f.select :gender, gender_html_options, id: "gender", style: "width: 410px"%>
+      <%= f.select :gender, gender_html_options(f.object.gender), id: "gender", style: "width: 410px"  %>
     <% end %>
   </div>
 
