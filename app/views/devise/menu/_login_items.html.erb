@@ -1,4 +1,7 @@
 <% if user_signed_in? %>
+	<li>
+		The credits left: <%= current_user.credit_left%>
+	</li>
   <li>
   <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
   </li>

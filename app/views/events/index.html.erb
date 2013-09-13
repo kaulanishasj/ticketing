@@ -4,11 +4,18 @@
 <% @events.each do |event| %>
   <tr>
     <td><%= event.name %></td>
-    <% if current_user.present? %>
+    
+    <% if @there_is_current_user %>
     	<td><%= link_to 'Show', event_sessioned_show_path(event) %></td>
     <% else %>
     	<td><%= link_to 'Show', event %></td>
     <% end %>
+
+    <% if @there_is_current_user && current_user.is_admin? %>
+    	<td><%= link_to 'Edit', edit_event_path(event) %></td>
+	   	<td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+
   </tr>
 <% end %>
 </table>

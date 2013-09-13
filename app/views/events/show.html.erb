@@ -1,8 +1,11 @@
-<%= @event.name%>'s Show page
+<h2><%= @event.name%>'s Show page</h2>
+<p>Description:  <%= @event.description %></p>
+<p>Entry Fee:  $<%= @event.entry_fee %></p>
+<p>Event Date: <%= @event.event_at %></p>
 
+<h3>List of People attending <% @event.name %></h3>
 <% @event.users.each do |user| %>
-	<p><%= user.email %></p>
-	<p><%= user.gender %></p>
+	<p><%= user.name %> -> <%= user.gender %></p>
 <% end %>
 <br/>
 <%= link_to 'Back', events_path %>

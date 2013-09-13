@@ -7,7 +7,8 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
   field :gender 
- 
+  field :credit_left, type: Float
+  
   ## Database authenticatable
   field :email, :type => String
   field :encrypted_password, :type => String
@@ -33,12 +34,16 @@ class User
   validates_presence_of :name
   validates_uniqueness_of :name, :email, :case_sensitive => false
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :gender
-  
-  
+    
   has_and_belongs_to_many :events, class_name: 'Event'
 
-  def add_event_to_attending(event)
-    self.events << event
-    self.save(validate: false)
+  def deduct_entry_from_credit(event)
+    self.credit_left -= event.gender_based_entry_fee(self)
+    self.save
   end
+
+  def is_admin?
+    (self.email == 'admin@admin.com')
+  end
+
 end

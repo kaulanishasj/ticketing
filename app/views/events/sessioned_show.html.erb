@@ -1,13 +1,26 @@
-<%= @event.name%>'s Show page
+<div>
+	<h2><%= @event.name%>'s Show page</h2>
+	<p>Description:  <%= @event.description %></p>
+	<p>Entry Fee:  $<%= @event.entry_fee %></p>
+	<p>Event Date: <%= @event.event_at %></p>
+</div>
 
-<%if @event.user_attending_event(current_user) %>
-	<p><%= link_to 'UnAttend',  user_event_unattend_path(current_user, @event), method: "post"%></p>
-<% else %>
-	<p><%= link_to 'Attend',  user_event_attend_path(current_user, @event), method: "post" %></p>
-<% end %>
+<div>
+	<% if @is_not_a_past_event %>
+		<% if  (@user_is_not_attending) %>
+			<%= link_to 'Attend',  user_event_attend_path(current_user, @event), :method => :post, :confirm => "You just Purchased entry fee to this event. The Entry fee is #{@event.gender_based_entry_fee(current_user)}" %>
+		<% else %>
+			<%= link_to 'UnAttend',  user_event_unattend_path(current_user, @event), :method => :post, :confirm => "Are you sure you want to un-attend the event? "%> 
+		<%end%>
+	<% end %>
+</div>
 
-<% @event.users.each do |user| %>
-	<p><%= user.email %></p><p><%= user.gender %></p>
-<% end %>
+<div>
+	<h3>List of People attending <% @event.name %></h3>
+	<% @event.users.each do |user| %>
+		<p><%= user.name %> -> <%= user.gender %></p>
+	<% end %>
+</div>
 
 <%= link_to 'Back', events_path %>
+

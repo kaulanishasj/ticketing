@@ -8,6 +8,10 @@
     <%= f.input :email, :required => true, :autofocus => true %>
     <%= f.input :password, :required => true %>
     <%= f.input :password_confirmation, :required => true %>
+    <%= f.input :credit_left , :required => true, label: 'Credit Money', prompt: true, input_html: { class: 'options' } do %>  
+      <%= f.select :credit_left, credit_left_html_options, id: "credit_left", style: "width: 410px"  %>
+    <% end %>
+
     <%= f.input :gender , :required => true, label: "Gender", prompt: true, input_html: { class: 'options' } do %>  
       <%= f.select :gender, gender_html_options(f.object.gender), id: "gender", style: "width: 410px"  %>
     <% end %>
